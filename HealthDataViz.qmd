@@ -1,0 +1,39 @@
+
+
+# Health data visualization
+
+Testing Quarto works by typing this text and running file
+
+## Loading libraries
+to avoid repeated installations of the same packages, they are commented out in this.
+
+```{r}
+# install.packages("GGally")
+# install.packages("NHANES")
+library(tidyverse)
+library(GGally)
+library(readr)
+library(NHANES)
+```
+## Loading data
+```{r}
+data("NHANES")
+```
+
+## object creation
+```{r}
+health_data <- NHANES %>% select(BMI,Age,Gender)
+```
+
+# Histogram from object data
+```{r}
+ggplot(health_data, aes(x = BMI))+
+geom_histogram(binwidth = 1, fill = "skyblue", color = "black") +
+labs(title = "Mean Weight in Wales is Higher Than European Average") +
+theme_dark()
+```
+
+
+# Creating a correlation plot (in all honesty I couldn't complete this part)
+
+val_cor <- health_data %>% select(BMI, Age, TotChol) %>%
